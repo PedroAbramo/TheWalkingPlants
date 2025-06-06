@@ -45,6 +45,57 @@ function buscarEspecifico(){
     });
 }
 
+function buscarFacil(){
+    let dificuldade = 'Fácil'//coloca a dificuldade aqui
+
+    fetch(`partidas/especifico?dificuldade=${dificuldade}`)
+    .then(response => {
+      if (response.ok) {
+        response.json().then(resposta => {
+            console.log(resposta)
+        });
+      } else {
+        console.error('Nenhuma pontuacao encontrada ou erro na API');
+      }
+    })
+    .catch(error => {
+      console.error(`Erro na obtenção das pontuacoes para exibir: ${error.message}`);
+    });
+}
+function buscarMedio(){
+    let dificuldade = 'Médio'//coloca a dificuldade aqui
+
+    fetch(`partidas/especifico?dificuldade=${dificuldade}`)
+    .then(response => {
+      if (response.ok) {
+        response.json().then(resposta => {
+            console.log(resposta)
+        });
+      } else {
+        console.error('Nenhuma pontuacao encontrada ou erro na API');
+      }
+    })
+    .catch(error => {
+      console.error(`Erro na obtenção das pontuacoes para exibir: ${error.message}`);
+    });
+}
+function buscarDificil(){
+    let dificuldade = 'Difícil'//coloca a dificuldade aqui
+
+    fetch(`partidas/especifico?dificuldade=${dificuldade}`)
+    .then(response => {
+      if (response.ok) {
+        response.json().then(resposta => {
+            console.log(resposta)
+        });
+      } else {
+        console.error('Nenhuma pontuacao encontrada ou erro na API');
+      }
+    })
+    .catch(error => {
+      console.error(`Erro na obtenção das pontuacoes para exibir: ${error.message}`);
+    });
+}
 function cadastrar(){
     fetch("/partidas/cadastrar", {
       method: "POST",
