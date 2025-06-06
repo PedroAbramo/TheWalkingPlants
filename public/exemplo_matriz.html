@@ -35,44 +35,4 @@
         }
     div_matriz.innerHTML += "<br>"   
     }
-
-    const matrizNumeros = [
-        [1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1]
-    ];
-
-    // Mostrar:
-    // Soma de cada linha [27, 113, 21]
-    // Média de cada coluna []
-    // 
-
-    const somaPorLinha = []
-    const mediaPorColuna = []
-    
-
-    for (let i = 0; i < matrizNumeros.length; i++) {
-    var soma = 0;
-        for (let j = 0; j < matrizNumeros[i].length; j++) {
-            soma += Number(matrizNumeros[i][j])
-        }
-        somaPorLinha.push(soma)
-    }
-
-    console.log(somaPorLinha)
-
-    for (let i = 0; i < matrizNumeros[0].length; i++) {
-    var somaColuna = 0;
-
-        for (let j = 0; j < matrizNumeros.length; j++) {
-            somaColuna += Number(matrizNumeros[j][i])
-        }
-        mediaPorColuna.push(somaColuna / matrizNumeros.length)
-    }
-    console.log(mediaPorColuna)
-    
 </script>
