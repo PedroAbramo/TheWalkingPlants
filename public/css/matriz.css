@@ -1,4 +1,9 @@
-
+body {
+    font-family: "Montserrat";
+    margin: 0;
+    background-image: url('../assets/imgs/Plants-vs-Zombies.jpg');
+    background-size: cover;
+}
 .temporizador {
     display: flex;
     justify-content: center;
