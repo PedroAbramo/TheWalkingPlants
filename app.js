@@ -17,7 +17,7 @@ var app = express();
 
 
 var partidaRouter = require("./src/routes/pontuacoes");
-
+var indexRouter = require("./src/routes/index");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(cors());
 
 app.use("/partidas", partidaRouter);
-
+app.use("/", indexRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
