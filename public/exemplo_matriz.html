@@ -49,7 +49,7 @@
     [1, 1, 1, 1, 1, 1, 1],
     [2, 1, 1, 1, 1, 1, 1],
   ];
-  
+
   console.log(matriz);
   //                 linha / coluna
   console.log(matriz[0][0]); // A
@@ -71,8 +71,32 @@
       .getAttribute("value")
       .split(",");
     console.log(casinhaSelecionada);
-    var pegarValorMatriz = matriz[casinhaSelecionada[0]][casinhaSelecionada[1]];
+    var pegarValorMatriz = Number(
+      matriz[casinhaSelecionada[0]][casinhaSelecionada[1]]
+    );
     console.log("Valor Matriz = " + pegarValorMatriz);
+    if (pegarValorMatriz == 1) {
+      document
+        .getElementById(parametroCoordenada)
+        .setAttribute(
+          "style",
+          "background-color: grey; width: 100px; height: 100px"
+        );
+    } else if (pegarValorMatriz == 2) {
+      document
+        .getElementById(parametroCoordenada)
+        .setAttribute(
+          "style",
+          "background-color: yellow; width: 100px; height: 100px"
+        );
+    } else if (pegarValorMatriz == 3) {
+      document
+        .getElementById(parametroCoordenada)
+        .setAttribute(
+          "style",
+          "background-color: red; width: 100px; height: 100px"
+        );
+    }
   }
 
   function gerarBlocosMatriz() {
@@ -86,7 +110,7 @@
         value="${i},${j}"
         onclick="escavar('casinha${i},${j}')"
         style="background-color: green; width: 100px; height: 100px; border: 1px solid black"
-        
+
       ></div>
       `;
       }
@@ -94,31 +118,40 @@
     }
   }
 
-   var tempoRestante = 120
-  var temporizador = document.querySelector(".temporizador")
+  
+  var tempoRestante = 120
+  if (slc_dificuldade.value === "facil") {
+    tempoRestante = 120; // 2 minutos
+  } else if (slc_dificuldade.value === "medio") {
+    tempoRestante = 240; // 4 minutos
+  } else if (slc_dificuldade.value === "dificil") {
+    tempoRestante = 480; // 8 minuto
+  }
+    var temporizador = document.querySelector(".temporizador")
 
-  function atualizarTemporizador() {
+    function atualizarTemporizador() {
     var minutos = Math.floor(tempoRestante / 60)
     var segundos = tempoRestante % 60
     if (minutos < 10) minutos = "0" + minutos
     if (segundos < 10) segundos = "0" + segundos
     temporizador.textContent = minutos + ":" + segundos
-  }
-
-  atualizarTemporizador()
-
-  function contar() {
-    tempoRestante = tempoRestante - 1
-    if (tempoRestante >= 0) {
-      atualizarTemporizador()
-    } else {
-      temporizador.textContent = "00:00"
-      clearInterval(intervalo)
     }
-  }
-  var intervalo = setInterval(contar, 1000) // Um segundo
 
-  if (document.querySelector(".temporizador").textContent === "00:00") {
-    
-  }
+    atualizarTemporizador()
+
+    function contar() {
+    tempoRestante = tempoRestante - 1
+        if (tempoRestante >= 0) {
+    atualizarTemporizador()
+    }   else {
+    temporizador.textContent = "00:00"
+    clearInterval(intervalo)
+        }
+    }
+    var intervalo = setInterval(contar, 1000) // Um segundo
+
+    if (document.querySelector(".temporizador").textContent === "00:00") {
+
+    }
+  
 </script>
