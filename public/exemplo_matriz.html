@@ -102,15 +102,22 @@
       
       function escavar(stringCoordenadas, matrizD) {
         var parametroCoordenada = stringCoordenadas;
-        console.log(parametroCoordenada)
+        console.log("matriz " + matrizD)
 
+        if(matrizD == "medio"){
+          matrizD = matrizMedio
+        }
+
+        if(matrizD == "dificil"){
+          matrizD = matrizDificil
+        }
+        
         var casinhaSelecionada = document
         .getElementById(parametroCoordenada)
         .getAttribute("value")
         .split(",");
         console.log(casinhaSelecionada);
-        var pegarValorMatriz = 
-          matrizD[casinhaSelecionada[0]][casinhaSelecionada[1]]
+        var pegarValorMatriz = matrizD[casinhaSelecionada[0]][casinhaSelecionada[1]]
         ;
         console.log("Valor Matriz = " + pegarValorMatriz);
         if (pegarValorMatriz == 1) {
@@ -147,16 +154,24 @@
       
       function gerarBlocosMatriz(matrizD) {
         div_matriz.innerHTML = ""
+        matrizEnviar = ""
 
         for (let i = 0; i < matrizD.length; i++) {
           for (let j = 0; j < matrizD[i].length; j++) {
             //console.log(matrizUsada[i][j])
+            console.log(matrizD)
+            console.log(matrizD.length)
+            if(matrizD.length == 10){
+              matrizEnviar = "medio"
+            } else if(matrizD.length == 15) {
+              matrizEnviar = "dificil"
+            }
             div_matriz.innerHTML += `
             <div
             class="grama"
             id="casinha${i},${j}"
             value="${i},${j}"
-            onclick="escavar('casinha${i},${j}',${matrizD})"
+            onclick="escavar('casinha${i},${j}', '${matrizEnviar}')"
             style="background-color: green; width: 100px; height: 100px; border: 1px solid black"
             
             ></div>
