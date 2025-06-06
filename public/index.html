@@ -1,3 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
 function buscarGeral(){
 
     fetch(`partidas/geral`)
@@ -15,10 +27,10 @@ function buscarGeral(){
     });
 }
 
-function buscarGeral(){
+function buscarEspecifico(){
     let dificuldade = ''//coloca a dificuldade aqui
 
-    fetch(`partidas/geral?dificuldade=${dificuldade}`)
+    fetch(`partidas/especifico?dificuldade=${dificuldade}`)
     .then(response => {
       if (response.ok) {
         response.json().then(resposta => {
@@ -38,7 +50,7 @@ function cadastrar(){
       method: "POST",
       body: {
         nome: 'nomeAqui',
-        pontuacao: 'pontucaoAqui',
+        pontuacao: 'pontuacaoAqui',
         dificuldade: 'dificuldadeAqui'
       }
     })
@@ -60,3 +72,4 @@ function cadastrar(){
 
     
 }
+</script>
