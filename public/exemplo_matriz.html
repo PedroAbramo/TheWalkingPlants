@@ -26,7 +26,13 @@
     </select>
 
     <div id="div_matriz">
-      <div class="grama" value="1,1" onclick="escavar()"></div>
+      <div
+        class="grama"
+        id="teste11"
+        value="0,0"
+        onclick="escavar()"
+        style="background-color: green; width: 100px; height: 100px"
+      ></div>
     </div>
   </body>
 </html>
@@ -52,5 +58,15 @@
       div_matriz.innerHTML += `${matriz[i][j]}</div>`;
     }
     div_matriz.innerHTML += "<br><br>";
+  }
+
+  function escavar() {
+    var casinhaSelecionada = document
+      .getElementById("teste11")
+      .getAttribute("value")
+      .split(",");
+    console.log(casinhaSelecionada);
+    var pegarValorMatriz = matriz[casinhaSelecionada[0]][casinhaSelecionada[1]];
+    console.log("Valor Matriz = " + pegarValorMatriz);
   }
 </script>
