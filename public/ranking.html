@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="width: 25%" >
+        <canvas id="ranking"></canvas>
+    </div>
+</body>
+</html>
+<script>
+    function buscarGeral(){
+
+    fetch(`partidas/geral`)
+    .then(response => {
+    
+      if (response.ok) {
+        response.json().then(resposta => {
+            const label = resposta.map(item => item.nomeUsuario);
+            const likes = resposta.map(item => item.pontuacao);
+            const ctx = document.getElementById('ranking').getContext('2d');
+            console.log(resposta)
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: label,
+                datasets: [{
+                    label: 'nome do uusuario',
+                    data: likes,
+                    backgroundColor: '#FCA311',
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'ranking geral'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                }
+            }
+        });
+        });
+      } else {
+        console.error('Nenhuma pontuacao encontrada ou erro na API');
+      }
+    }
+)
+    .catch(error => {
+      console.error(`Erro na obtenção das pontuacoes para exibir: ${error.message}`);
+    });
+    }
+
+    window.onload = buscarGeral;
+    
+    function buscarFacil(){
+    let dificuldade = 'Fácil'//coloca a dificuldade aqui
+
+    fetch(`partidas/especifico?dificuldade=${dificuldade}`)
+    .then(response => {
+    
+      if (response.ok) {
+        response.json().then(resposta => {
+            const label = resposta.map(item => item.nomeUsuario);
+            const likes = resposta.map(item => item.pontuacao);
+            const ctx = document.getElementById('ranking').getContext('2d');
+            console.log(resposta)
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: label,
+                datasets: [{
+                    label: 'nome do uusuario',
+                    data: likes,
+                    backgroundColor: '#FCA311',
+                    borderRadius: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'ranking'
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            stepSize: 1
+                        }
+                    }
+                }
+            }
+        });
+        });
+      } else {
+        console.error('Nenhuma pontuacao encontrada ou erro na API');
+      }
+    }
+)
+    .catch(error => {
+      console.error(`Erro na obtenção das pontuacoes para exibir: ${error.message}`);
+    });
+}
+     
+</script>
