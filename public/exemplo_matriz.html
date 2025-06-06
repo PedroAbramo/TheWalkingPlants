@@ -22,12 +22,12 @@
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
-      width: 50%;
+      width: 60%;
       align-self: center;
     }
   </style>
 
-  <body onload="gerarBlocosMatriz()">
+  <body onload="gerarBlocosMatriz(), definirDificuldade()">
     <div class="temporizador">mudar</div>
     <div id="div_vidas">mudar</div>
 
@@ -36,11 +36,12 @@
       <option value="medio">Médio</option>
       <option value="dificil">Difícil</option>
     </select>
-    <button onclick="definirDificuldade(matriz)">Alterar Dificuldade</button>
-
-    <div class="div_ajuste">
-      <div id="div_matriz"></div>
-    </div>
+    <button onclick="definirDificuldade()">Alterar Dificuldade</button>
+    <center>
+      <div class="div_ajuste">
+        <div id="div_matriz"></div>
+      </div>
+    </center>
   </body>
 </html>
 
@@ -134,6 +135,8 @@
         );
 
       vidas = vidas - 1;
+      div_vidas.innerHTML = `Vidas: ${vidas}`;
+
       console.log("Quantidade de vidas: " + vidas);
     }
     if (vidas == 0) {
@@ -141,9 +144,9 @@
     }
   }
 
-  function gerarBlocosMatriz(matrizSelecionada) {
-    for (let i = 0; i < matrizSelecionada.length; i++) {
-      for (let j = 0; j < matrizSelecionada[i].length; j++) {
+  function gerarBlocosMatriz() {
+    for (let i = 0; i < matriz.length; i++) {
+      for (let j = 0; j < matriz[i].length; j++) {
         //console.log(matrizUsada[i][j])
         div_matriz.innerHTML += `
             <div
@@ -182,23 +185,27 @@
     }
   }
 
+  var vidas = 5;
+
   function definirDificuldade() {
     var slc = document.getElementById("slc_dificuldade");
     if (slc.value === "facil") {
       tempoRestante = 120;
       vidas = 5;
+      gerarBlocosMatriz(matriz);
     } else if (slc.value === "medio") {
       tempoRestante = 240;
       vidas = 4;
+      gerarBlocosMatriz(matrizMedio);
     } else if (slc.value === "dificil") {
       tempoRestante = 480;
       vidas = 3;
+      gerarBlocosMatriz(matrizDificil);
     }
     atualizarTemporizador();
+    div_vidas.innerHTML = `Vidas: ${vidas}`;
   }
 
-  var vidas = 0;
-  div_vidas.innerHTML = `Vidas: ${vidas}`;
   atualizarTemporizador();
   intervalo = setInterval(contar, 1000);
 </script>
