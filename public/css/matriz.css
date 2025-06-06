@@ -1,0 +1,29 @@
+.temporizador {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    font-weight: bold;
+    color: #2e7d32;
+    background: #e8f5e9;
+    border-radius: 10px;
+    padding: 12px 32px;
+    margin: 24px auto 12px auto;
+    box-shadow: 0 2px 8px rgba(46,125,50,0.08);
+    width: fit-content;
+}
+
+#div_vidas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: 600;
+    color: #c62828;
+    background: #ffebee;
+    border-radius: 10px;
+    padding: 8px 24px;
+    margin: 0 auto 18px auto;
+    width: fit-content;
+    box-shadow: 0 2px 8px rgba(198,40,40,0.08);
+}
