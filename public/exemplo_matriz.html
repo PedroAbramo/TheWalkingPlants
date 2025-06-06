@@ -184,6 +184,9 @@
         }
       }
       
+      var vidas = 5;
+      div_vidas.innerHTML = `Vidas: ${vidas}`
+
       function definirDificuldade() {
         var slc = document.getElementById("slc_dificuldade");
         if (slc.value === "facil") {
@@ -200,10 +203,9 @@
           gerarBlocosMatriz(matrizDificil)
         }
         atualizarTemporizador();
+        div_vidas.innerHTML = `Vidas: ${vidas}`
       }
       
-      var vidas = 0;
-      div_vidas.innerHTML = `Vidas: ${vidas}`
       atualizarTemporizador();
       intervalo = setInterval(contar, 1000);
       </script>
