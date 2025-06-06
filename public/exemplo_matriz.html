@@ -22,12 +22,12 @@
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
-      width: 50%;
+      width: 60%;
       align-self: center;
     }
   </style>
 
-  <body onload="gerarBlocosMatriz()">
+  <body onload="definirDificuldade()">
 
     <div class="temporizador">mudar</div>
 
@@ -37,10 +37,11 @@
       <option value="dificil" >Difícil</option>
     </select>
     <button onclick="definirDificuldade()">Alterar Dificuldade</button>
-
-    <div class="div_ajuste">
-      <div id="div_matriz"></div>
-    </div>
+    <center>
+      <div class="div_ajuste">
+        <div id="div_matriz"></div>
+      </div>
+    </center>
   </body>
 </html>
 
@@ -135,9 +136,11 @@
     }
   }
 
-  function gerarBlocosMatriz() {
-    for (let i = 0; i < matriz.length; i++) {
-      for (let j = 0; j < matriz[i].length; j++) {
+  function gerarBlocosMatriz(matrizD) {
+    div_matriz_innerHTML = ""
+
+    for (let i = 0; i < matrizD.length; i++) {
+      for (let j = 0; j < matrizD[i].length; j++) {
         //console.log(matrizUsada[i][j])
         div_matriz.innerHTML += `
       <div
@@ -180,10 +183,14 @@ function definirDificuldade() {
   var slc = document.getElementById("slc_dificuldade");
   if (slc.value === "facil") {
     tempoRestante = 120;
+    gerarBlocosMatriz(matriz)
   } else if (slc.value === "medio") {
     tempoRestante = 240;
+    gerarBlocosMatriz(matrizMedio)
   } else if (slc.value === "dificil") {
     tempoRestante = 480;
+    gerarBlocosMatriz(matrizDificil)
+
   }
   atualizarTemporizador();
 }
