@@ -22,7 +22,7 @@
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
-      width: 50%;
+      width: 60%;
       align-self: center;
     }
 
@@ -30,15 +30,19 @@
 
   <body onload="gerarBlocosMatriz()">
     <div class="temporizador">mudar</div>
+    <div id="div_vidas">mudar</div>
+
     <select id="slc_dificuldade">
       <option value="facil">Fácil</option>
       <option value="medio">Médio</option>
       <option value="dificil">Difícil</option>
     </select>
-
-    <div class="div_ajuste">
-      <div id="div_matriz"></div>
-    </div>
+    <button onclick="definirDificuldade()">Alterar Dificuldade</button>
+    <center>
+      <div class="div_ajuste">
+        <div id="div_matriz"></div>
+      </div>
+    </center>
   </body>
 </html>
 
@@ -54,138 +58,155 @@
   ];
 
   const matrizMedio = [
-  [1,3,1,1,1,3,1,1,1,2],
-  [1,1,1,3,1,1,1,3,1,2],
-  [1,1,1,1,3,1,1,1,3,2],
-  [1,1,3,1,1,1,3,1,1,2],
-  [3,1,1,1,1,3,1,1,1,2],
-  [1,1,1,1,3,1,1,3,1,2],
-  [1,3,1,1,1,1,3,1,1,2],
-  [1,1,1,3,1,1,1,1,3,2],
-  [1,1,3,1,1,1,1,3,1,2],
-  [3,1,1,1,3,1,1,1,1,2],
-];
+    [1, 3, 1, 1, 1, 3, 1, 1, 1, 2],
+    [1, 1, 1, 3, 1, 1, 1, 3, 1, 2],
+    [1, 1, 1, 1, 3, 1, 1, 1, 3, 2],
+    [1, 1, 3, 1, 1, 1, 3, 1, 1, 2],
+    [3, 1, 1, 1, 1, 3, 1, 1, 1, 2],
+    [1, 1, 1, 1, 3, 1, 1, 3, 1, 2],
+    [1, 3, 1, 1, 1, 1, 3, 1, 1, 2],
+    [1, 1, 1, 3, 1, 1, 1, 1, 3, 2],
+    [1, 1, 3, 1, 1, 1, 1, 3, 1, 2],
+    [3, 1, 1, 1, 3, 1, 1, 1, 1, 2],
+  ];
 
   const matrizDificil = [
-  [1,3,1,1,1,3,1,1,1,2,1,3,1,1,2],
-  [1,1,1,3,1,1,1,3,1,2,1,1,1,3,2],
-  [1,1,1,1,3,1,1,1,3,2,1,1,3,1,2],
-  [1,1,3,1,1,1,3,1,1,2,1,3,1,1,2],
-  [3,1,1,1,1,3,1,1,1,2,3,1,1,1,2],
-  [1,1,1,1,3,1,1,3,1,2,1,1,1,3,2],
-  [1,3,1,1,1,1,3,1,1,2,1,3,1,1,2],
-  [1,1,1,3,1,1,1,1,3,2,1,1,1,3,2],
-  [1,1,3,1,1,1,1,3,1,2,1,1,3,1,2],
-  [3,1,1,1,3,1,1,1,1,2,3,1,1,1,2],
-  [1,3,1,1,1,3,1,1,1,2,1,3,1,1,2],
-  [1,1,1,3,1,1,1,3,1,2,1,1,1,3,2],
-  [1,1,1,1,3,1,1,1,3,2,1,1,3,1,2],
-  [1,1,3,1,1,1,3,1,1,2,1,3,1,1,2],
-  [3,1,1,1,1,3,1,1,1,2,3,1,1,1,2],
-];
+    [1, 3, 1, 1, 1, 3, 1, 1, 1, 2, 1, 3, 1, 1, 2],
+    [1, 1, 1, 3, 1, 1, 1, 3, 1, 2, 1, 1, 1, 3, 2],
+    [1, 1, 1, 1, 3, 1, 1, 1, 3, 2, 1, 1, 3, 1, 2],
+    [1, 1, 3, 1, 1, 1, 3, 1, 1, 2, 1, 3, 1, 1, 2],
+    [3, 1, 1, 1, 1, 3, 1, 1, 1, 2, 3, 1, 1, 1, 2],
+    [1, 1, 1, 1, 3, 1, 1, 3, 1, 2, 1, 1, 1, 3, 2],
+    [1, 3, 1, 1, 1, 1, 3, 1, 1, 2, 1, 3, 1, 1, 2],
+    [1, 1, 1, 3, 1, 1, 1, 1, 3, 2, 1, 1, 1, 3, 2],
+    [1, 1, 3, 1, 1, 1, 1, 3, 1, 2, 1, 1, 3, 1, 2],
+    [3, 1, 1, 1, 3, 1, 1, 1, 1, 2, 3, 1, 1, 1, 2],
+    [1, 3, 1, 1, 1, 3, 1, 1, 1, 2, 1, 3, 1, 1, 2],
+    [1, 1, 1, 3, 1, 1, 1, 3, 1, 2, 1, 1, 1, 3, 2],
+    [1, 1, 1, 1, 3, 1, 1, 1, 3, 2, 1, 1, 3, 1, 2],
+    [1, 1, 3, 1, 1, 1, 3, 1, 1, 2, 1, 3, 1, 1, 2],
+    [3, 1, 1, 1, 1, 3, 1, 1, 1, 2, 3, 1, 1, 1, 2],
+  ];
 
+  
   console.log(matriz);
   //                 linha / coluna
   console.log(matriz[0][0]); // A
   console.log(matriz[2][1]); // H
-
+  
   // for (let i = 0; i < matriz.length; i++) {
-  //   for (let j = 0; j < matriz[i].length; j++) {
-  //     //console.log(matriz[i][j])
-  //     div_matriz.innerHTML += `${matriz[i][j]}</div>`;
-  //   }
-  //   div_matriz.innerHTML += "<br><br>";
-  // }
-
-  function escavar(stringCoordenadas) {
-    var parametroCoordenada = stringCoordenadas;
-
-    var casinhaSelecionada = document
-      .getElementById(parametroCoordenada)
-      .getAttribute("value")
-      .split(",");
-    console.log(casinhaSelecionada);
-    var pegarValorMatriz = Number(
-      matriz[casinhaSelecionada[0]][casinhaSelecionada[1]]
-    );
-    console.log("Valor Matriz = " + pegarValorMatriz);
-    if (pegarValorMatriz == 1) {
-      document
+    //   for (let j = 0; j < matriz[i].length; j++) {
+      //     //console.log(matriz[i][j])
+      //     div_matriz.innerHTML += `${matriz[i][j]}</div>`;
+      //   }
+      //   div_matriz.innerHTML += "<br><br>";
+      // }
+      
+      function escavar(stringCoordenadas) {
+        var parametroCoordenada = stringCoordenadas;
+        
+        var casinhaSelecionada = document
         .getElementById(parametroCoordenada)
-        .setAttribute(
-          "style",
-          "background-color: grey; width: 100px; height: 100px"
+        .getAttribute("value")
+        .split(",");
+        console.log(casinhaSelecionada);
+        var pegarValorMatriz = Number(
+          matriz[casinhaSelecionada[0]][casinhaSelecionada[1]]
         );
-    } else if (pegarValorMatriz == 2) {
-      document
-        .getElementById(parametroCoordenada)
-        .setAttribute(
-          "style",
-          "background-color: yellow; width: 100px; height: 100px"
-        );
-    } else if (pegarValorMatriz == 3) {
-      document
-        .getElementById(parametroCoordenada)
-        .setAttribute(
-          "style",
-          "background-color: red; width: 100px; height: 100px"
-        );
-    }
-  }
-
-  function gerarBlocosMatriz() {
-    for (let i = 0; i < matriz.length; i++) {
-      for (let j = 0; j < matriz[i].length; j++) {
-        //console.log(matrizUsada[i][j])
-        div_matriz.innerHTML += `
-      <div
-        class="grama"
-        id="casinha${i},${j}"
-        value="${i},${j}"
-        onclick="escavar('casinha${i},${j}')"
-        style="background-color: green; width: 100px; height: 100px; border: 1px solid black"
-
-      ></div>
-      `;
-      }
-      div_matriz.innerHTML += "<br><br>";
-    }
-  }
-
-  
-  var tempoRestante = 120
-  if (slc_dificuldade.value === "facil") {
-    tempoRestante = 120; // 2 minutos
-  } else if (slc_dificuldade.value === "medio") {
-    tempoRestante = 240; // 4 minutos
-  } else if (slc_dificuldade.value === "dificil") {
-    tempoRestante = 480; // 8 minuto
-  }
-    var temporizador = document.querySelector(".temporizador")
-
-    function atualizarTemporizador() {
-    var minutos = Math.floor(tempoRestante / 60)
-    var segundos = tempoRestante % 60
-    if (minutos < 10) minutos = "0" + minutos
-    if (segundos < 10) segundos = "0" + segundos
-    temporizador.textContent = minutos + ":" + segundos
-    }
-
-    atualizarTemporizador()
-
-    function contar() {
-    tempoRestante = tempoRestante - 1
-        if (tempoRestante >= 0) {
-    atualizarTemporizador()
-    }   else {
-    temporizador.textContent = "00:00"
-    clearInterval(intervalo)
+        console.log("Valor Matriz = " + pegarValorMatriz);
+        if (pegarValorMatriz == 1) {
+          document
+          .getElementById(parametroCoordenada)
+          .setAttribute(
+            "style",
+            "background-color: grey; width: 100px; height: 100px"
+          );
+        } else if (pegarValorMatriz == 2) {
+          document
+          .getElementById(parametroCoordenada)
+          .setAttribute(
+            "style",
+            "background-color: yellow; width: 100px; height: 100px"
+          );
+        } else if (pegarValorMatriz == 3) {
+          document
+          .getElementById(parametroCoordenada)
+          .setAttribute(
+            "style",
+            "background-color: red; width: 100px; height: 100px"
+          );
+          
+          vidas = vidas - 1;
+          console.log("Quantidade de vidas: " + vidas);
         }
-    }
-    var intervalo = setInterval(contar, 1000) // Um segundo
+        if (vidas == 0) {
+          alert("Acabara as vidas, fim de jogo");
+        }
+      }
+      
+      function gerarBlocosMatriz() {
+        for (let i = 0; i < matriz.length; i++) {
+          for (let j = 0; j < matriz[i].length; j++) {
+            //console.log(matrizUsada[i][j])
+            div_matriz.innerHTML += `
+            <div
+            class="grama"
+            id="casinha${i},${j}"
+            value="${i},${j}"
+            onclick="escavar('casinha${i},${j}')"
+            style="background-color: green; width: 100px; height: 100px; border: 1px solid black"
+            
+            ></div>
+            `;
+          }
+          div_matriz.innerHTML += "<br><br>";
+        }
+      }
+      
+      var intervalo;
+      var tempoRestante = 120;
+      var temporizador = document.querySelector(".temporizador");
+      
+      function atualizarTemporizador() {
+        var minutos = Math.floor(tempoRestante / 60);
+        var segundos = tempoRestante % 60;
+        if (minutos < 10) minutos = "0" + minutos;
+        if (segundos < 10) segundos = "0" + segundos;
+        temporizador.textContent = minutos + ":" + segundos;
+      }
+      
+      function contar() {
+        tempoRestante = tempoRestante - 1;
+        if (tempoRestante >= 0) {
+          atualizarTemporizador();
+        } else {
+          temporizador.textContent = "00:00";
+          clearInterval(intervalo);
+        }
+      }
+      
+      var vidas = 5;
+      div_vidas.innerHTML = `Vidas: ${vidas}`
 
-    if (document.querySelector(".temporizador").textContent === "00:00") {
-
-    }
-  
-</script>
+      function definirDificuldade() {
+        var slc = document.getElementById("slc_dificuldade");
+        if (slc.value === "facil") {
+          tempoRestante = 120;
+          vidas = 5;
+          gerarBlocosMatriz(matriz)
+        } else if (slc.value === "medio") {
+          tempoRestante = 240;
+          vidas = 4;
+          gerarBlocosMatriz(matrizMedio)
+        } else if (slc.value === "dificil") {
+          tempoRestante = 480;
+          vidas = 3;
+          gerarBlocosMatriz(matrizDificil)
+        }
+        atualizarTemporizador();
+        div_vidas.innerHTML = `Vidas: ${vidas}`
+      }
+      
+      atualizarTemporizador();
+      intervalo = setInterval(contar, 1000);
+      </script>
