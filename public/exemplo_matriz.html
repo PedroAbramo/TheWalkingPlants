@@ -19,12 +19,15 @@
   </style>
 
   <body onload="gerarBlocosMatriz()">
+
     <div class="temporizador">mudar</div>
+
     <select id="slc_dificuldade">
       <option value="facil">Fácil</option>
       <option value="medio">Médio</option>
-      <option value="dificil">Difícil</option>
+      <option value="dificil" >Difícil</option>
     </select>
+    <button onclick="definirDificuldade()">Alterar Dificuldade</button>
 
     <div id="div_matriz">
       <div
@@ -93,14 +96,22 @@
     }
   }
 
-  
-  var tempoRestante = 120
-  if (slc_dificuldade.value === "facil") {
-    tempoRestante = 120; // 2 minutos
-  } else if (slc_dificuldade.value === "medio") {
-    tempoRestante = 240; // 4 minutos
-  } else if (slc_dificuldade.value === "dificil") {
-    tempoRestante = 480; // 8 minuto
+  var intervalo;
+  var tempoRestante = 120;
+  var temporizador = document.querySelector(".temporizador");
+
+  function definirDificuldade() {
+    var slc = document.getElementById("slc_dificuldade");
+    if (slc.value === "facil") {
+      tempoRestante = 120;
+    } else if (slc.value === "medio") {
+      tempoRestante = 240;
+    } else if (slc.value === "dificil") {
+      tempoRestante = 480;
+    }
+    atualizarTemporizador();
+    clearInterval(intervalo);
+    intervalo = setInterval(contar, 1000);
   }
     var temporizador = document.querySelector(".temporizador")
 
