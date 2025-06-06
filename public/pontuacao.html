@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exemplo - Matriz</title>
+    <link rel="stylesheet" href="css/matriz.css" />
+  </head>
+
+  <style>
+    #div_matriz {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      letter-spacing: 50px;
+      margin-top: 20%;
+      flex-wrap: wrap;
+    }
+
+    .div_ajuste {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      width: 800px;
+      align-self: center;
+    }
+  </style>
+
+  <body onload="gerarBlocosMatriz(), definirDificuldade()" >
+    <div class="temporizador">mudar</div>
+    <div id="div_vidas">mudar</div>
+    <div id="pontuacao">pontuacao</div>
+
+    <select id="slc_dificuldade">
+      <option value="facil">Fácil</option>
+      <option value="medio">Médio</option>
+      <option value="dificil">Difícil</option>
+    </select>
+    <button onclick="definirDificuldade()">Alterar Dificuldade</button>
+    <center>
+      <div class="div_ajuste" id="tabu">
+        <div id="div_matriz"></div>
+      </div>
+    </center>
+  </body>
+</html>
+
+<script>
+
+  var tabuleiro = document.getElementById('tabu');
+
+  const matriz = [
+    [3, 1, 1, 1, 1, 1, 2],
+    [1, 1, 1, 2, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1],
+    [1, 2, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 3, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1],
+    [2, 1, 1, 1, 1, 1, 1],
+  ];
+
+  const matrizMedio = [
+    [1, 3, 1, 1, 1, 3, 1, 1, 1, 2],
+    [1, 1, 1, 3, 1, 1, 1, 3, 1, 2],
+    [1, 1, 1, 1, 3, 1, 1, 1, 3, 2],
+    [1, 1, 3, 1, 1, 1, 3, 1, 1, 2],
+    [3, 1, 1, 1, 1, 3, 1, 1, 1, 2],
+    [1, 1, 1, 1, 3, 1, 1, 3, 1, 2],
+    [1, 3, 1, 1, 1, 1, 3, 1, 1, 2],
+    [1, 1, 1, 3, 1, 1, 1, 1, 3, 2],
+    [1, 1, 3, 1, 1, 1, 1, 3, 1, 2],
+    [3, 1, 1, 1, 3, 1, 1, 1, 1, 2],
+  ];
+
+  const matrizDificil = [
+    [1, 3, 1, 1, 1, 3, 1, 1, 1, 2, 1, 3, 1, 1, 2],
+    [1, 1, 1, 3, 1, 1, 1, 3, 1, 2, 1, 1, 1, 3, 2],
+    [1, 1, 1, 1, 3, 1, 1, 1, 3, 2, 1, 1, 3, 1, 2],
+    [1, 1, 3, 1, 1, 1, 3, 1, 1, 2, 1, 3, 1, 1, 2],
+    [3, 1, 1, 1, 1, 3, 1, 1, 1, 2, 3, 1, 1, 1, 2],
+    [1, 1, 1, 1, 3, 1, 1, 3, 1, 2, 1, 1, 1, 3, 2],
+    [1, 3, 1, 1, 1, 1, 3, 1, 1, 2, 1, 3, 1, 1, 2],
+    [1, 1, 1, 3, 1, 1, 1, 1, 3, 2, 1, 1, 1, 3, 2],
+    [1, 1, 3, 1, 1, 1, 1, 3, 1, 2, 1, 1, 3, 1, 2],
+    [3, 1, 1, 1, 3, 1, 1, 1, 1, 2, 3, 1, 1, 1, 2],
+    [1, 3, 1, 1, 1, 3, 1, 1, 1, 2, 1, 3, 1, 1, 2],
+    [1, 1, 1, 3, 1, 1, 1, 3, 1, 2, 1, 1, 1, 3, 2],
+    [1, 1, 1, 1, 3, 1, 1, 1, 3, 2, 1, 1, 3, 1, 2],
+    [1, 1, 3, 1, 1, 1, 3, 1, 1, 2, 1, 3, 1, 1, 2],
+    [3, 1, 1, 1, 1, 3, 1, 1, 1, 2, 3, 1, 1, 1, 2],
+  ];
+
+  
+  console.log(matriz);
+  //                 linha / coluna
+  console.log(matriz[0][0]); // A
+  console.log(matriz[2][1]); // H
+  
+  var pontuacao = 0
+      
+      function escavar(stringCoordenadas) {
+        var parametroCoordenada = stringCoordenadas;
+        
+        var casinhaSelecionada = document
+        .getElementById(parametroCoordenada)
+        .getAttribute("value")
+        .split(",");
+        console.log(casinhaSelecionada);
+        var pegarValorMatriz = Number(
+          matriz[casinhaSelecionada[0]][casinhaSelecionada[1]]
+        );
+        console.log("Valor Matriz = " + pegarValorMatriz);
+        if (pegarValorMatriz == 1) {
+          document
+          .getElementById(parametroCoordenada)
+          .setAttribute(
+            "style",
+            "background-color: grey; width: 100px; height: 100px"
+          );
+        } else if (pegarValorMatriz == 2) {
+          document
+          .getElementById(parametroCoordenada)
+          .setAttribute(
+            "style",
+            "background-color: yellow; width: 100px; height: 100px"
+          );
+          pontuacao += 100;
+
+
+        } else if (pegarValorMatriz == 3) {
+          document
+          .getElementById(parametroCoordenada)
+          .setAttribute(
+            "style",
+            "background-color: red; width: 100px; height: 100px"
+          );
+          
+          vidas = vidas - 1;
+          div_vidas.innerHTML = `Vidas: ${vidas}`
+
+          console.log("Quantidade de vidas: " + vidas);
+        }
+        if (vidas == 0) {
+          alert("Acabara as vidas, fim de jogo");
+        }
+
+        if (pegarValorMatriz == 2) {
+          alert("Parabéns, você ganhou 100 pontos!");
+          document.getElementById("pontuacao").innerHTML = `Pontuação: ${pontuacao}`;
+        } else if (pegarValorMatriz == 3) {
+          alert("Você perdeu uma vida!");
+        }
+      }
+      
+      function gerarBlocosMatriz(matrizD) {
+        div_matriz.innerHTML = ""
+
+        for (let i = 0; i < matrizD.length; i++) {
+          for (let j = 0; j < matrizD[i].length; j++) {
+            //console.log(matrizUsada[i][j])
+            div_matriz.innerHTML += `
+            <div
+            class="grama"
+            id="casinha${i},${j}"
+            value="${i},${j}"
+            onclick="escavar('casinha${i},${j}')"
+            style="background-color: green; width: 100px; height: 100px; border: 1px solid black"
+            
+            ></div>
+            `;
+          }
+          div_matriz.innerHTML += "<br><br>";
+        }
+      }
+      
+      var intervalo;
+      var tempoRestante = 120;
+      var temporizador = document.querySelector(".temporizador");
+      
+      function atualizarTemporizador() {
+        var minutos = Math.floor(tempoRestante / 60);
+        var segundos = tempoRestante % 60;
+        if (minutos < 10) minutos = "0" + minutos;
+        if (segundos < 10) segundos = "0" + segundos;
+        temporizador.textContent = minutos + ":" + segundos;
+      }
+      
+      function contar() {
+        tempoRestante = tempoRestante - 1;
+        if (tempoRestante >= 0) {
+          atualizarTemporizador();
+        } else {
+          temporizador.textContent = "00:00";
+          clearInterval(intervalo);
+        }
+      }
+      
+      var vidas = 5;
+
+      if (tempoRestante <= 0) {
+        alert("O tempo acabou, fim de jogo");
+      }
+
+      if (vidas == 0) {
+        alert("Suas vidas acabaram, fim de jogo");
+      }
+
+      function definirDificuldade() {
+        var slc = document.getElementById("slc_dificuldade");
+        if (slc.value === "facil") {
+          tempoRestante = 120;
+          vidas = 5;
+          gerarBlocosMatriz(matriz)
+          tabuleiro.style.width = "800px"
+        } else if (slc.value === "medio") {
+          tempoRestante = 240;
+          vidas = 4;
+          gerarBlocosMatriz(matrizMedio)
+          tabuleiro.style.width = "1100px"
+
+        } else if (slc.value === "dificil") {
+          tempoRestante = 480;
+          vidas = 3;
+          gerarBlocosMatriz(matrizDificil)
+          tabuleiro.style.width = "1600px"
+
+        }
+        atualizarTemporizador();
+        div_vidas.innerHTML = `Vidas: ${vidas}`
+      }
+      
+      atualizarTemporizador();
+      intervalo = setInterval(contar, 1000);
+      </script>
