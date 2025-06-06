@@ -19,6 +19,7 @@ insert into TheWalkingPlants.Dificuldade (descricao) values
 ('Médio'),
 ('Difícil');
 
+
 -- Listar a maior pontuação geral
 select p.nomeUsuario, case d.descricao 
 	when 'Fácil' then p.pontuacao*1
