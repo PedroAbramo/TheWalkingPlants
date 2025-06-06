@@ -11,10 +11,19 @@
       width: 100%;
       height: 100%;
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
       letter-spacing: 50px;
       margin-top: 20%;
+      flex-wrap: wrap;
+    }
+
+    .div_ajuste {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;
+      width: 50%;
+      align-self: center;
     }
 
   </style>
@@ -27,14 +36,8 @@
       <option value="dificil">Difícil</option>
     </select>
 
-    <div id="div_matriz">
-      <div
-        class="grama"
-        id="teste11"
-        value="0,0"
-        onclick="escavar()"
-        style="background-color: green; width: 100px; height: 100px"
-      ></div>
+    <div class="div_ajuste">
+      <div id="div_matriz"></div>
     </div>
   </body>
 </html>
@@ -86,13 +89,13 @@
   console.log(matriz[0][0]); // A
   console.log(matriz[2][1]); // H
 
-  for (let i = 0; i < matriz.length; i++) {
-    for (let j = 0; j < matriz[i].length; j++) {
-      //console.log(matriz[i][j])
-      div_matriz.innerHTML += `${matriz[i][j]}</div>`;
-    }
-    div_matriz.innerHTML += "<br><br>";
-  }
+  // for (let i = 0; i < matriz.length; i++) {
+  //   for (let j = 0; j < matriz[i].length; j++) {
+  //     //console.log(matriz[i][j])
+  //     div_matriz.innerHTML += `${matriz[i][j]}</div>`;
+  //   }
+  //   div_matriz.innerHTML += "<br><br>";
+  // }
 
   function escavar(stringCoordenadas) {
     var parametroCoordenada = stringCoordenadas;
