@@ -1,50 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Exemplo - Matriz</title>
-</head>
+  </head>
 
-<style>
+  <style>
     #div_matriz {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        letter-spacing: 50px;
-        margin-top: 20%;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      letter-spacing: 50px;
+      margin-top: 20%;
     }
-</style>
+  </style>
 
-<body>
-    <div id="div_matriz"></div>
-</body>
+  <body>
+    <select id="slc_dificuldade">
+      <option value="facil">Fácil</option>
+      <option value="medio">Médio</option>
+      <option value="dificil">Difícil</option>
+    </select>
 
+    <div id="div_matriz">
+      <div class="grama" value="1,1" onclick="escavar()"></div>
+    </div>
+  </body>
 </html>
 
 <script>
-    const matriz = [
-        [3, 1, 1, 1, 1, 1, 2],
-        [1, 1, 1, 2, 1, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1],
-        [1, 2, 1, 1, 1, 1, 1],
-        [1, 1, 1, 1, 3, 1, 1],
-        [1, 1, 1, 1, 1, 1, 1],
-        [2, 1, 1, 1, 1, 1, 1]
-    ];
-    console.log(matriz);
-//                 linha / coluna
-    console.log(matriz[0][0]) // A
-    console.log(matriz[2][1]) // H
+  const matriz = [
+    [3, 1, 1, 1, 1, 1, 2],
+    [1, 1, 1, 2, 1, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1],
+    [1, 2, 1, 1, 1, 1, 1],
+    [1, 1, 1, 1, 3, 1, 1],
+    [1, 1, 1, 1, 1, 1, 1],
+    [2, 1, 1, 1, 1, 1, 1],
+  ];
+  console.log(matriz);
+  //                 linha / coluna
+  console.log(matriz[0][0]); // A
+  console.log(matriz[2][1]); // H
 
-    for (let i = 0; i < matriz.length; i++) {
-        for (let j = 0; j < matriz[i].length; j++) {
-            //console.log(matriz[i][j])
-            div_matriz.innerHTML += `${matriz[i][j]}</div>`
-        }
-    div_matriz.innerHTML += "<br><br>"   
+  for (let i = 0; i < matriz.length; i++) {
+    for (let j = 0; j < matriz[i].length; j++) {
+      //console.log(matriz[i][j])
+      div_matriz.innerHTML += `${matriz[i][j]}</div>`;
     }
+    div_matriz.innerHTML += "<br><br>";
+  }
 </script>
