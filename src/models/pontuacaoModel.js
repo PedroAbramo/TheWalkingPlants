@@ -25,7 +25,7 @@ function buscarEspecifico(dificuldade) {
     else p.pontuacao*3
     end pontuacao from Partida p
     inner join Dificuldade d on p.fkDificuldade=d.idDificuldade
-    where d.descricao=${dificuldade}
+    where d.descricao='${dificuldade}'
     order by pontuacao desc;
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
