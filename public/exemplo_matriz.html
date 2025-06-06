@@ -47,7 +47,7 @@
     [1, 1, 1, 1, 1, 1, 1],
     [2, 1, 1, 1, 1, 1, 1],
   ];
-  
+
   console.log(matriz);
   //                 linha / coluna
   console.log(matriz[0][0]); // A
@@ -69,8 +69,32 @@
       .getAttribute("value")
       .split(",");
     console.log(casinhaSelecionada);
-    var pegarValorMatriz = matriz[casinhaSelecionada[0]][casinhaSelecionada[1]];
+    var pegarValorMatriz = Number(
+      matriz[casinhaSelecionada[0]][casinhaSelecionada[1]]
+    );
     console.log("Valor Matriz = " + pegarValorMatriz);
+    if (pegarValorMatriz == 1) {
+      document
+        .getElementById(parametroCoordenada)
+        .setAttribute(
+          "style",
+          "background-color: grey; width: 100px; height: 100px"
+        );
+    } else if (pegarValorMatriz == 2) {
+      document
+        .getElementById(parametroCoordenada)
+        .setAttribute(
+          "style",
+          "background-color: yellow; width: 100px; height: 100px"
+        );
+    } else if (pegarValorMatriz == 3) {
+      document
+        .getElementById(parametroCoordenada)
+        .setAttribute(
+          "style",
+          "background-color: red; width: 100px; height: 100px"
+        );
+    }
   }
 
   function gerarBlocosMatriz() {
@@ -84,7 +108,7 @@
         value="${i},${j}"
         onclick="escavar('casinha${i},${j}')"
         style="background-color: green; width: 100px; height: 100px; border: 1px solid black"
-        
+
       ></div>
       `;
       }
