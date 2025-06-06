@@ -27,7 +27,7 @@
     }
   </style>
 
-  <body onload="gerarBlocosMatriz()">
+  <body onload="gerarBlocosMatriz(), definirDificuldade()" >
     <div class="temporizador">mudar</div>
     <div id="div_vidas">mudar</div>
 
@@ -136,6 +136,8 @@
           );
           
           vidas = vidas - 1;
+          div_vidas.innerHTML = `Vidas: ${vidas}`
+
           console.log("Quantidade de vidas: " + vidas);
         }
         if (vidas == 0) {
@@ -185,7 +187,6 @@
       }
       
       var vidas = 5;
-      div_vidas.innerHTML = `Vidas: ${vidas}`
 
       function definirDificuldade() {
         var slc = document.getElementById("slc_dificuldade");
