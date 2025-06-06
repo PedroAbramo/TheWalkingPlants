@@ -18,7 +18,7 @@
     }
   </style>
 
-  <body>
+  <body onload="gerarBlocosMatriz()">
     <select id="slc_dificuldade">
       <option value="facil">Fácil</option>
       <option value="medio">Médio</option>
@@ -60,13 +60,34 @@
     div_matriz.innerHTML += "<br><br>";
   }
 
-  function escavar() {
+  function escavar(stringCoordenadas) {
+    var parametroCoordenada = stringCoordenadas;
+
     var casinhaSelecionada = document
-      .getElementById("teste11")
+      .getElementById(parametroCoordenada)
       .getAttribute("value")
       .split(",");
     console.log(casinhaSelecionada);
     var pegarValorMatriz = matriz[casinhaSelecionada[0]][casinhaSelecionada[1]];
     console.log("Valor Matriz = " + pegarValorMatriz);
+  }
+
+  function gerarBlocosMatriz() {
+    for (let i = 0; i < matriz.length; i++) {
+      for (let j = 0; j < matriz[i].length; j++) {
+        //console.log(matrizUsada[i][j])
+        div_matriz.innerHTML += `
+      <div
+        class="grama"
+        id="teste${i},${j}"
+        value="${i},${j}"
+        onclick="escavar('teste${i},${j}')"
+        style="background-color: green; width: 100px; height: 100px; border: 1px solid black"
+        
+      ></div>
+      `;
+      }
+      div_matriz.innerHTML += "<br><br>";
+    }
   }
 </script>
