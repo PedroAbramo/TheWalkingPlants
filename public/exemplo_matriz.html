@@ -188,6 +188,10 @@
       
       var vidas = 5;
 
+      if (vidas == 0) {
+        alert("Suas vidas acabaram, fim de jogo");
+      }
+
       function definirDificuldade() {
         var slc = document.getElementById("slc_dificuldade");
         if (slc.value === "facil") {
