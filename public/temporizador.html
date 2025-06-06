@@ -18,9 +18,8 @@
     }
   </style>
 
-  <body>
+  <body onload="gerarBlocosMatriz()">
     <div class="temporizador">mudar</div>
-
     <select id="slc_dificuldade">
       <option value="facil">Fácil</option>
       <option value="medio">Médio</option>
@@ -49,6 +48,7 @@
     [1, 1, 1, 1, 1, 1, 1],
     [2, 1, 1, 1, 1, 1, 1],
   ];
+  
   console.log(matriz);
   //                 linha / coluna
   console.log(matriz[0][0]); // A
@@ -62,17 +62,38 @@
     div_matriz.innerHTML += "<br><br>";
   }
 
-  function escavar() {
+  function escavar(stringCoordenadas) {
+    var parametroCoordenada = stringCoordenadas;
+
     var casinhaSelecionada = document
-      .getElementById("teste11")
+      .getElementById(parametroCoordenada)
       .getAttribute("value")
       .split(",");
     console.log(casinhaSelecionada);
-    var pegarValorMatriz = matriz[casinhaSelecionada[0]][casinhaSelecionada[1]]
-    console.log("Valor Matriz = " + pegarValorMatriz)
+    var pegarValorMatriz = matriz[casinhaSelecionada[0]][casinhaSelecionada[1]];
+    console.log("Valor Matriz = " + pegarValorMatriz);
   }
 
-  var tempoRestante = 120
+  function gerarBlocosMatriz() {
+    for (let i = 0; i < matriz.length; i++) {
+      for (let j = 0; j < matriz[i].length; j++) {
+        //console.log(matrizUsada[i][j])
+        div_matriz.innerHTML += `
+      <div
+        class="grama"
+        id="casinha${i},${j}"
+        value="${i},${j}"
+        onclick="escavar('casinha${i},${j}')"
+        style="background-color: green; width: 100px; height: 100px; border: 1px solid black"
+        
+      ></div>
+      `;
+      }
+      div_matriz.innerHTML += "<br><br>";
+    }
+  }
+
+   var tempoRestante = 120
   var temporizador = document.querySelector(".temporizador")
 
   function atualizarTemporizador() {
@@ -94,9 +115,10 @@
       clearInterval(intervalo)
     }
   }
-  var intervalo = setInterval(contar, 1000)
+  var intervalo = setInterval(contar, 1000) // Um segundo
 
+  // Alterar aqui para fazer encerrar o jogo
   if (document.querySelector(".temporizador").textContent === "00:00") {
-    
+
   }
 </script>
